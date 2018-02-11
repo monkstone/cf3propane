@@ -1,8 +1,9 @@
-require_relative "cf3propane/version"
+require_relative 'cf3propane/version'
 
 module Propane
   java_import 'processing.core.PConstants'
   class ContextFree
+    include Propane::Proxy
     attr_accessor :rule, :app, :width, :height
 
     AVAILABLE_OPTIONS = %i[

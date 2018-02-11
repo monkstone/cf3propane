@@ -1,0 +1,1 @@
+-XX:InlineSmallCode=500 -Xms256m -Xmx2g -XX:NewSize=64m -XX:MaxNewSize=64m
