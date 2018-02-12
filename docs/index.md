@@ -4,6 +4,7 @@ title: Welcome to cf3propane gem website
 categories: propane contextfreeart
 ---
 
-### Stuff
+### Example output
+[about]({{ site.github.url }}/about)
 
 ![y.png]({{ site.github.url }}/assets/y.png)
