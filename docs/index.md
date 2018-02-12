@@ -5,3 +5,5 @@ categories: propane contextfreeart
 ---
 
 ### Stuff
+
+![y.png]({{ site.github.url }}/assets/y.png)
