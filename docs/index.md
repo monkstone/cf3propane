@@ -5,6 +5,6 @@ categories: propane contextfreeart
 ---
 
 ### Example output
-[about]({{ site.github.url }}/about)
+[About]({{ site.github.url }}/about) [Example]({{ site.github.url }}/example)
 
 ![y.png]({{ site.github.url }}/assets/y.png)

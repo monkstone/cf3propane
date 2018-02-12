@@ -1,3 +1,10 @@
+---
+layout: default
+title: A simple example with weighted shapes
+permalink: /example/
+categories: propane contextfreeart
+---
+```ruby
 #!/usr/bin/env jruby
 require 'propane'
 require 'cf3propane'
@@ -66,3 +73,5 @@ class City < Propane::App
 end
 
 City.new
+
+```
