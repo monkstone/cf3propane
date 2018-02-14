@@ -10,8 +10,8 @@ regenerate: true
 url: "https://monkstone.github.io/cf3propane"
 
 urls:
-  bugs: https://github.com/monkstone/cfpropane/issues
-  github: https://github.com/monkstone/cfpropane
+  bugs: https://github.com/monkstone/cf3propane/issues
+  github: https://github.com/monkstone/cf3propane
 twitter_username: monkstoneT
 github_username:  monkstone
 
