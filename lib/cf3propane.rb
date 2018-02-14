@@ -57,10 +57,9 @@ module Propane
           def #{rule_name}(options)
             merge_options(@values, options)
             pick = determine_rule(#{rule_name.inspect})
-            unless (@values[:size] - @values[:stop_size]) < 0
-              prepare_to_draw
-              pick[1].call(options)
-            end
+            return if (@values[:size] - @values[:stop_size]) < 0
+            prepare_to_draw
+            pick[1].call(options)
           end
           METH
         end
