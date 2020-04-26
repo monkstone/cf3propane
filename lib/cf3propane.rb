@@ -12,7 +12,6 @@ module Propane
     HSB_ORDER       = { hue: 0, saturation: 1, brightness: 2, alpha: 3 }.freeze
     TRIANGLE_TOP    = -1 / Math.sqrt(3)
     TRIANGLE_BOTTOM = Math.sqrt(3) / 6
-    RADIANS = (Math::PI / 180.0)
     # Define a context-free system. Use this method to create a ContextFree
     # object. Call render() on it to make it draw.
     def self.define(&block)
@@ -51,18 +50,19 @@ module Propane
       total = @rules[rule_name][:total]
       @rules[rule_name][:procs] << [(total...(prob + total)), proc]
       @rules[rule_name][:total] += prob
-      return if ContextFree.method_defined? rule_name
-      self.class.class_eval do
-        eval <<-METH
-        def #{rule_name}(options)
-          merge_options(@values, options)
-          pick = determine_rule(#{rule_name.inspect})
-          return if (@values[:size] - @values[:stop_size]) < 0
-          prepare_to_draw
-          pick[1].call(options)
+      unless ContextFree.method_defined? rule_name
+        self.class.class_eval do
+          eval <<-METH
+          def #{rule_name}(options)
+            merge_options(@values, options)
+            pick = determine_rule(#{rule_name.inspect})
+            return if (@values[:size] - @values[:stop_size]) < 0
+            prepare_to_draw
+            pick[1].call(options)
+          end
+          METH
         end
-        METH
-      end      
+      end
     end
 
     # Rule choice is random, based on the assigned probabilities.
@@ -86,7 +86,7 @@ module Propane
         when :x, :y
           old_ops[key] = value * old_ops.fetch(:size, 1.0)
         when :rotation
-          old_ops[key] = value * RADIANS
+          old_ops[key] = value.radians
         when :hue, :saturation, :brightness, :alpha
           adjusted = old_ops[:color].dup
           adjusted[HSB_ORDER[key]] *= value unless key == :hue
@@ -130,7 +130,7 @@ module Propane
 
     # Saving the context means the values plus the coordinate matrix.
     def save_context
-      @rewind_stack.push @values.dup
+      @rewind_stack << @values.dup
       @matrix_stack << @graphics.get_matrix
     end
 
